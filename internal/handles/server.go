@@ -2,16 +2,15 @@ package handles
 
 import (
 	"LibraryService/internal/api"
-	"LibraryService/internal/service"
 	"context"
 )
 
 type LibraryRPC struct {
-	s *service.LibraryService
+	s LybraryService
 }
 
-func NewLibraryRPC(s *service.LibraryService) *LibraryRPC {
-	return &LibraryRPC{s: s}
+func NewLibraryRPC(s *LybraryService) *LibraryRPC {
+	return &LibraryRPC{s: *s}
 }
 
 func (r *LibraryRPC) SearchBooks(ctx context.Context, in *api.SearchBooksRequest) (*api.SearchBooksResponse, error) {
