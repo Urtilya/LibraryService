@@ -1,0 +1,27 @@
+syntax="proto3";
+
+option go_package = "./";
+
+package api;
+service library {
+    rpc SearchBooks (SearchBooksRequest) returns (SearchBooksResponse);
+    rpc SearchAuthors (SearchAuthorsRequest) returns (SearchAuthorsResponse);
+}
+
+message SearchBooksRequest {
+    string query = 1;
+}
+
+message SearchBooksResponse {
+    string book = 1;
+    repeated string author = 2;
+}
+
+message SearchAuthorsRequest {
+    string query = 1;
+}
+
+message SearchAuthorsResponse {
+    string author = 1;
+    repeated string books = 2;
+}
