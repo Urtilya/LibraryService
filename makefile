@@ -1,8 +1,13 @@
-all: build database
+all: database build 
 
 database:
-	docker run --name mysql_test_library -d -v $(PWD)/data_db:/var/lib/mysql -p 3606:3606  mysql
+	docker build -t library_db .
+	docker run --name mysql_library -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root MYSQL_DATABASE=library library_db
 	
 build:
 	go build cmd/main.go
 	
+rm:
+	docker stop mysql_library
+	docker rm mysql_library
+	docker rmi library_db
