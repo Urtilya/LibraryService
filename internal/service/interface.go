@@ -1,8 +1,6 @@
 package service
 
-import "LibraryService/internal/models"
-
 type LibraryStorage interface {
-	GetBooks() (models.Book, error)
-	GetAuthors() (models.Author, error)
+	GetBooks(name string) ([]string, error)
+	GetAuthors(name string) ([]string, error)
 }

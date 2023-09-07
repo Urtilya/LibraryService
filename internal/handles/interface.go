@@ -3,6 +3,6 @@ package handles
 import "LibraryService/internal/models"
 
 type LybraryService interface {
-	SearchBooks(string) (models.Book, error)
-	SearchAuthors(string) (models.Author, error)
+	SearchBooks(query string) (models.Book, error)
+	SearchAuthors(query string) (models.Author, error)
 }
