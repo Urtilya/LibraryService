@@ -18,7 +18,7 @@ func TestLibraryService_SearchBooks(t *testing.T) {
 		Port:     3306,
 		User:     "root",
 		Password: "root",
-		Db:       "test",
+		Db:       "library",
 		Timeout:  10,
 	}
 	db, _ := db.NewSqlDB(&cfg)
@@ -34,10 +34,14 @@ func TestLibraryService_SearchBooks(t *testing.T) {
 			name: "SearchBooks",
 			s:    NewService(storage),
 			args: args{
-				query: "test",
+				query: "Утро черных звезд",
 			},
 			want: models.Book{
-				Name: "test",
+				Name: "Утро черных звезд",
+				Author: []string{
+					"Иар Эльтеррус",
+					"Екатерина Белецкая",
+				},
 			},
 			wantErr: false,
 		},
@@ -65,7 +69,7 @@ func TestLibraryService_SearchAuthors(t *testing.T) {
 		Port:     3306,
 		User:     "root",
 		Password: "root",
-		Db:       "test",
+		Db:       "library",
 		Timeout:  10,
 	}
 	db, _ := db.NewSqlDB(&cfg)
@@ -81,10 +85,18 @@ func TestLibraryService_SearchAuthors(t *testing.T) {
 			name: "SearchAuthors",
 			s:    NewService(storage),
 			args: args{
-				query: "test",
+				query: "Иар Эльтеррус",
 			},
 			want: models.Author{
-				Name: "test",
+				Name: "Иар Эльтеррус",
+				Books: []string{
+					"Танцующий бог",
+					"Затерянный замок",
+					"Утро черных звезд",
+					"День черных звезд",
+					"Вечер черных звезд",
+					"Ночь черных звезд",
+				},
 			},
 			wantErr: false,
 		},

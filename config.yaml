@@ -1,0 +1,8 @@
+DB:
+    User: "root"
+    Password: "root"
+    Host: "localhost"
+    Port: 3306
+    Db: "library"
+    Timeout: 5
+GrpcPort: 50051

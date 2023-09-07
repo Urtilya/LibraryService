@@ -26,7 +26,7 @@ func (s *LibraryService) SearchBooks(query string) (models.Book, error) {
 		Name: query,
 	}
 	//Получение данных
-	authors, err := s.storage.GetAuthors(query)
+	authors, err := s.storage.GetBooks(query)
 	if err != nil {
 		return res, err
 	}
@@ -44,7 +44,7 @@ func (s *LibraryService) SearchAuthors(query string) (models.Author, error) {
 		Name: query,
 	}
 	//Получение данных
-	books, err := s.storage.GetBooks(query)
+	books, err := s.storage.GetAuthors(query)
 	if err != nil {
 		return res, err
 	}

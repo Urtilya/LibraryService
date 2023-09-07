@@ -21,7 +21,7 @@ func TestLibraryRPC_SearchBooks(t *testing.T) {
 		Port:     3306,
 		User:     "root",
 		Password: "root",
-		Db:       "test",
+		Db:       "library",
 		Timeout:  10,
 	}
 	db, _ := db.NewSqlDB(&cfg)
@@ -40,12 +40,15 @@ func TestLibraryRPC_SearchBooks(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				in: &api.SearchBooksRequest{
-					Query: "test",
+					Query: "Утро черных звезд",
 				},
 			},
 			want: &api.SearchBooksResponse{
-				Book:   "test",
-				Author: []string{"test"},
+				Book: "Утро черных звезд",
+				Author: []string{
+					"Иар Эльтеррус",
+					"Екатерина Белецкая",
+				},
 			},
 			wantErr: false,
 		},
@@ -74,7 +77,7 @@ func TestLibraryRPC_SearchAuthors(t *testing.T) {
 		Port:     3306,
 		User:     "root",
 		Password: "root",
-		Db:       "test",
+		Db:       "library",
 		Timeout:  10,
 	}
 	db, _ := db.NewSqlDB(&cfg)
@@ -93,12 +96,19 @@ func TestLibraryRPC_SearchAuthors(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 				in: &api.SearchAuthorsRequest{
-					Query: "test",
+					Query: "Иар Эльтеррус",
 				},
 			},
 			want: &api.SearchAuthorsResponse{
-				Author: "test",
-				Books:  []string{"test"},
+				Author: "Иар Эльтеррус",
+				Books: []string{
+					"Танцующий бог",
+					"Затерянный замок",
+					"Утро черных звезд",
+					"День черных звезд",
+					"Вечер черных звезд",
+					"Ночь черных звезд",
+				},
 			},
 			wantErr: false,
 		},

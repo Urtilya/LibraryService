@@ -16,7 +16,7 @@ func TestStorage_GetBooks(t *testing.T) {
 		Port:     3306,
 		User:     "root",
 		Password: "root",
-		Db:       "test",
+		Db:       "library",
 		Timeout:  10,
 	}
 	db, _ := db.NewSqlDB(&cfg)
@@ -31,10 +31,10 @@ func TestStorage_GetBooks(t *testing.T) {
 			name: "GetBooks",
 			s:    NewStorage(db),
 			args: args{
-				name: "test",
+				name: "Танцующий бог",
 			},
 			want: []string{
-				"test",
+				"Иар Эльтеррус",
 			},
 			wantErr: false,
 		},
@@ -62,7 +62,7 @@ func TestStorage_GetAuthors(t *testing.T) {
 		Port:     3306,
 		User:     "root",
 		Password: "root",
-		Db:       "test",
+		Db:       "library",
 		Timeout:  10,
 	}
 	db, _ := db.NewSqlDB(&cfg)
@@ -77,10 +77,16 @@ func TestStorage_GetAuthors(t *testing.T) {
 			name: "GetAuthors",
 			s:    NewStorage(db),
 			args: args{
-				name: "test",
+				name: "Екатерина Белецкая",
 			},
 			want: []string{
-				"test",
+				"Долгий солнечный день",
+				"Адонай и Альтея",
+				"Тингл твист",
+				"Утро черных звезд",
+				"День черных звезд",
+				"Вечер черных звезд",
+				"Ночь черных звезд",
 			},
 			wantErr: false,
 		},
